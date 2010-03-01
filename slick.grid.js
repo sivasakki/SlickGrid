@@ -57,6 +57,7 @@
  *     rerenderOnResize    - Rerender the column when it is resized (useful for columns relying on cell width or adaptive formatters).
  *     asyncPostRender     - Function responsible for manipulating the cell DOM node after it has been rendered (called in the background).
  *     behavior            - Configures the column with one of several available predefined behaviors:  "select", "move", "selectAndMove".
+ *     toolTip		   - Set tooltip if it is different than header name.
  *
  *
  * EVENTS:
@@ -453,7 +454,7 @@ if (!jQuery.fn.drag) {
                 var header = $("<div class='ui-state-default slick-header-column' cell=" + i + " id='" + m.id + "' />")
                     .html("<span class='slick-column-name'>" + m.name + "</span>")
                     .width(m.width - headerColumnWidthDiff)
-                    .attr('title', m.name)
+                    .attr('title', (m.toolTip === null || m.toolTip === undefined) ? m.name:m.toolTip)
                     .appendTo($headers);
 
                 if (m.hidden) {
